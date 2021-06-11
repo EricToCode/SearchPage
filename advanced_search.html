@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            * {
+                font-family: Futura;
+            }
+
+            .time {
+                text-align: center;
+                border: 3px solid white;
+                position: absolute;
+                top: 35%;
+                left: 47%;
+                margin-top: -50px;
+                margin-left: auto;
+                background-color: rgb(195, 229, 240);
+            }
+            .date {
+            text-align: center;
+            border: 3px solid white;
+            position: absolute;
+            top: 40%;
+            left: 43%;
+            margin-top: -50px;
+            margin-left: auto;
+            background-color: rgb(195, 229, 240);
+            }
+            #form1 {
+                position:absolute;
+                left:30%;
+                top: 50%;
+                margin-left: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #form2 {
+                position:absolute;
+                left:30%;
+                top: 55%;
+                margin-left: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #form3 {
+                position:absolute;
+                left:30%;
+                top: 60%;
+                margin-left: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            #form4 {
+                position:absolute;
+                left:30%;
+                top: 65%;
+                margin-left: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            button {
+                background-color:lightgrey;
+                width: 200px;
+                height:50px;
+                font-size: 15px;
+            }
+            button:hover {
+                background-color: darkgrey;
+            }
+            #find {
+                position:absolute;
+                left: 30%;
+                top: 45%;
+            }
+            #button {
+                position:absolute;
+                left: 30%;
+                top: 70%;
+            }
+        </style>
+        <title>Advanced Search</title>
+    </head>
+    <body background="sky.jpeg">
+        <!-- add buttons for the image and advances search -->
+        <form method="get" action="index.html"><button type="submit">Google search main page</button></form>
+        <form method="get" action="image_search.html"><button type="submit">Google image search</button></form>
+        <form method="get" action="advanced_search.html"><button type="submit">Google advanced search</button></form>
+        
+        <h1 id="clockbox" class="time"></h1>
+        <h2 id="datebox" class="date"></h2>
+
+        <script type="text/javascript">
+            var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+            function GetClock(){
+            var d=new Date();
+            var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+            var nhour=d.getHours(),nmin=d.getMinutes();
+            if(nmin<=9) nmin="0"+nmin
+
+            var clocktext=nhour+":"+nmin+"";
+            var datetext=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear;
+            document.getElementById('clockbox').innerHTML=clocktext;
+            document.getElementById('datebox').innerHTML=datetext;
+            }
+
+            GetClock();
+            setInterval(GetClock,1000);
+        </script>
+        <div id="find">
+            <p>Find pages with...</p>
+        </div>
+        <br>
+        <div>
+            <form action="https://google.com/search" name="f">
+                <div id="form1">
+                    <label for="field1">all these words:</label>
+                    <input type="text" size="100" value=""  name="as_q">
+                </div>
+                <br><br>
+                <div id="form2">
+                    <label for="field2">this exact word or phrase:</label>
+                    <input type="text" size="100" value=""  name="as_epq">
+                </div>
+                <br>
+                <div id="form3">
+                    <label for="field3">any of this words:</label>
+                    <input type="text" size="100" value=""  name="as_oq">
+                </div>
+                <br>
+                <div id="form4">
+                    <label for="field4">none of these words:</label>
+                    <input type="text" size="100" value=""  name="as_eq">
+                </div>
+                <input id="button" type="submit" value="advanced search">
+            </form>
+            
+        </div>
+        
+    </body>
+</html>
